@@ -17,8 +17,9 @@
                          PreviewKeyDown="{x:Bind helpers:PreviewKeyDownHandler.RejectLetters}"
                          SpinButtonPlacementMode="Inline" />
 
-        <winui:NumberBox Header="B"
-                         PreviewKeyDown="{x:Bind helpers:PreviewKeyDownHandler.AcceptNumbersOnly}" />
+        <winui:NumberBox AcceptsExpression="True"
+                         Header="B"
+                         PreviewKeyDown="{x:Bind helpers:PreviewKeyDownHandler.AcceptNumbersAndOperators}" />
 
         <StackPanel Orientation="Horizontal"
                     PreviewKeyDown="{x:Bind helpers:PreviewKeyDownHandler.AcceptNumbersOnly}"

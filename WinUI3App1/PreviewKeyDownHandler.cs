@@ -33,7 +33,7 @@ namespace Helpers {
                    _keyStateFunction(VirtualKey.RightWindows).HasFlag(CoreVirtualKeyStates.Down);
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Sender is used")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Must match KeyEventHandler delegate, don't remove sender")]
         public static void RejectLetters(object sender, KeyRoutedEventArgs e) {
             if (IsModifierKeyDown()) {
                 return;
@@ -43,7 +43,7 @@ namespace Helpers {
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Sender is used")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Must match KeyEventHandler delegate, don't remove sender")]
         public static void AcceptNumbersOnly(object sender, KeyRoutedEventArgs e) {
             if (IsModifierKeyDown()) {
                 return;
@@ -61,6 +61,7 @@ namespace Helpers {
                 VirtualKey.Tab => false,
                 VirtualKey.Home => false,
                 VirtualKey.End => false,
+                VirtualKey.Shift => false,
                 VirtualKey.Back => false,
                 VirtualKey.Delete => false,
                 VirtualKey.Enter => false,
@@ -70,6 +71,26 @@ namespace Helpers {
                 (VirtualKey)190 => false, // Dot
                 _ => true,
             };
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Must match KeyEventHandler delegate, don't remove sender")]
+        public static void AcceptNumbersAndOperators(object sender, KeyRoutedEventArgs e) {
+            if (IsModifierKeyDown()) {
+                return;
+            }
+
+            AcceptNumbersOnly(sender, e);
+            if (e.Handled) {
+                e.Handled = e.Key switch {
+                    VirtualKey.Multiply => false,
+                    VirtualKey.Divide => false,
+                    VirtualKey.Add => false,
+                    VirtualKey.Subtract => false,
+                    VirtualKey.Space => false,
+                    (VirtualKey)187 => false, // +
+                    _ => true,
+                };
+            }
         }
     }
 }
