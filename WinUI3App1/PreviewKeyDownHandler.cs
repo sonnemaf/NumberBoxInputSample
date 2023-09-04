@@ -20,9 +20,9 @@ namespace Helpers {
     static class PreviewKeyDownHandler {
 
 #if WINDOWS_UWP
-        private static Func<VirtualKey, CoreVirtualKeyStates> _keyStateFunction = CoreWindow.GetForCurrentThread().GetKeyState;
+        private static readonly Func<VirtualKey, CoreVirtualKeyStates> _keyStateFunction = CoreWindow.GetForCurrentThread().GetKeyState;
 #else
-        private static Func<VirtualKey, CoreVirtualKeyStates> _keyStateFunction = Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread;
+        private static readonly Func<VirtualKey, CoreVirtualKeyStates> _keyStateFunction = Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread;
 #endif
 
         private static bool IsModifierKeyDown() {
