@@ -2,7 +2,7 @@
 
 WinUI3 and UWP Sample project showing how to limit keyboard input on a NumberBox, only allow nubers, no letters.
 
-Uses `x:Bind` to the `PreviewKeyDownHandler` helper class.
+Uses `x:Bind` to the [PreviewKeyDownHandler](https://github.com/sonnemaf/NumberBoxInputSample/blob/master/WinUI3App1/PreviewKeyDownHandler.cs) helper class.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
